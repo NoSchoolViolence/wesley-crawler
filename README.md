@@ -3,12 +3,12 @@ Please use python 3.6 to create virtual environment
 
 To create a virtual environment
 	<br>
-	<p><em>python3.6 -m venv venv</em> </p>
+	<strong><em>python3.6 -m venv venv</em> </strong>
 
 
 to install required libraries
 	<br>
-	<p><em>pip install -e requirements.txt</em></p>
+	<strong><em>pip install -e requirements.txt</em></strong>
 
 to configure the application modify config.py
 You can configure the appliation. For example, you can set:
@@ -24,5 +24,5 @@ You can configure the appliation. For example, you can set:
 
 to run the crawler run app.py
 	<br>
-	<p><em>python3.6 appy</em></p>
+	<strong><em>python3.6 appy</em></strong>
 
