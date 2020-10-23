@@ -3,12 +3,12 @@ Please use python 3.6 to create virtual environment
 
 To create a virtual environment
 	<br>
-	<b>python3.6 -m venv venv </b>
+	<b><em>python3.6 -m venv venv</em> </b>
 
 
 to install required libraries
 	<br>
-	<b>pip install -e requirements.txt</b>
+	<b><em>pip install -e requirements.txt</em></b>
 
 to configure the application modify config.py
 You can configure the appliation. For example, you can set:
