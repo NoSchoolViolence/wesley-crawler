@@ -20,7 +20,6 @@ You can configure the appliation. For example, you can set:
 
 - save the resarch result as JSON
 	SAVE_AS_JSON=1
--
 
 to run the crawler run app.py
 	<br>
