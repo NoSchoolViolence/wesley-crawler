@@ -7,6 +7,8 @@ from filemanager import FileManager
 from search import GoogleSearch
 import logging
 import logging.config
+#from pathlib import Path
+from pathlib3x import Path
 
 class Application():
 	def __init__(self):
@@ -43,9 +45,39 @@ class Application():
 			topic=config.SEARCH_TOPIC
 		self.__file_manager.save_as_json(web_list, web_list_content_clean,topic)
 
+	def verify_require_folders(self):
+		try:
+			Path(os.getcwd() + '/tmp/').mkdir(parents=True, exist_ok=True)
+			Path(os.getcwd() + '/files/').mkdir(parents=True, exist_ok=True)
+			Path(os.getcwd() + '/log/').mkdir(parents=True, exist_ok=True)
+		except FileNotFoundError as e:
+			log.error("Error:/log creation ", exc_info=True)
+		except NotImplementedError as e:
+			log.error("Error:/log creation ", exc_info=True)
+
+	def remove_tmp_folders(self):
+		try:
+			#Path(os.getcwd() + '/tmp/').unlink(missing_ok=True)
+			# Path(os.getcwd() + '/tmp/').rmdir()
+			Path(os.getcwd() + '/tmp/').rmtree(ignore_errors=True)
+			# self.rm_rf(Path(os.getcwd() + '/tmp/'))
+		except FileNotFoundError as e:
+			log.error("Error:/tmp creation ", exc_info=True)
+		except NotImplementedError as e:
+			log.error("Error:/tmp creation ", exc_info=True)
+
+	def rm_rf(self, pth: Path):
+		for child in pth.iterdir():
+			if child.is_file():
+				child.unlink()
+			else:
+				self.rm_rf(child)
+		pth.rmdir()
+
 def main():
 	start_time = time.time()
 	app = Application()
+	app.verify_require_folders()
 	queries = config.SEARCH_TOPIC_LIST
 	for query in queries:
 		log.info(f"Query for search is {query}")
@@ -58,9 +90,13 @@ def main():
 
 		if config.SAVE_AS_CSV == 1:
 			app.save_as_csv(web_list, web_list_content_clean, query)
-			log.info("Result is saved as csv format for {query}")
+			log.info('Result is saved as csv format for'+query)
+		if config.SAVE_AS_JSON == 1:
 			app.save_as_json(web_list, web_list_content_clean, query)
-			log.info('Result is saved as json for {query}')
+			log.info('Result is saved as json for'+query)
+	if config.REMOVE_TMP_DIR==1:
+		app.remove_tmp_folders()
+
 	log.info("Mission Completed!")
 
 if __name__ == '__main__':

@@ -128,3 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+#Project files and folders
+.idea/
+tmp/
+log/
+files/
+*.log
