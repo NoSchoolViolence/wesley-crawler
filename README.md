@@ -1,4 +1,4 @@
-## Welcome to Wesley's Crawler GitHub Pages
+## Welcome to Wesley's Crawler GitHub Page
 
 ## What is Wesley?
 Wesley is the engine being developed to ingest enormous amounts of text, process the unstructured data, extract the information, store it in an structured manner, and analyze the data in various efforts to prevent & reduce violence in schools. 
