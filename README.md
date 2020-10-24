@@ -14,6 +14,9 @@ Please use python 3.x to create virtual environment
 To create a virtual environment
   `python3 -m venv venv`
 
+Acivate virtual environment
+  `source venv/bin/activate`
+
 ### Prepare environment
 to install required libraries
   `pip install -r requirements.txt`
