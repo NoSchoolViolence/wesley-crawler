@@ -9,6 +9,7 @@ import logging
 import logging.config
 #from pathlib import Path
 from pathlib3x import Path
+from persistence.cfsmanager import CSFManager
 
 class Application():
 	def __init__(self):
@@ -16,6 +17,7 @@ class Application():
 		self.__cleaner = Cleaner()
 		self.__file_manager = FileManager()
 		self.__search_engine= GoogleSearch(config.SEARCH_TOPIC, config.MAX_ITEM, config.NUMBER_OF_RESULTS_PER_PAGE,config.PAUSE_BTW_REQUEST)
+		self.__csf_manager = CSFManager()
 
 	def setQuery(self, keyword):
 		self.__search_engine.setKeyword(keyword)
@@ -38,12 +40,12 @@ class Application():
 		if not topic:
 			topic=config.SEARCH_TOPIC
 
-		self.__file_manager.save_as_csv(web_list, web_list_content_clean,topic)
+		return self.__file_manager.save_as_csv(web_list, web_list_content_clean,topic)
 
 	def save_as_json(self, web_list, web_list_content_clean, topic=None):
 		if not topic:
 			topic=config.SEARCH_TOPIC
-		self.__file_manager.save_as_json(web_list, web_list_content_clean,topic)
+		return self.__file_manager.save_as_json(web_list, web_list_content_clean,topic)
 
 	def verify_require_folders(self):
 		try:
@@ -74,11 +76,17 @@ class Application():
 				self.rm_rf(child)
 		pth.rmdir()
 
+	def get_csf_manager(self):
+		if not self.__csf_manager:
+			self.__csf_manager = CSFManager()
+		return  self.__csf_manager
+
 def main():
 	start_time = time.time()
 	app = Application()
 	app.verify_require_folders()
 	queries = config.SEARCH_TOPIC_LIST
+
 	for query in queries:
 		log.info(f"Query for search is {query}")
 		app.setQuery(query)
@@ -88,12 +96,21 @@ def main():
 		run_time = round(finish_time - start_time)
 		log.info(f"Application Running time = {run_time // 60} mins and {run_time % 60} sec over {len(web_list)} urls")
 
+		csv_file_name=""
+		json_file_name=""
 		if config.SAVE_AS_CSV == 1:
-			app.save_as_csv(web_list, web_list_content_clean, query)
-			log.info('Result is saved as csv format for'+query)
+			csv_file_name = app.save_as_csv(web_list, web_list_content_clean, query)
+			log.info('Result is saved as csv format for'+query+" file="+csv_file_name)
 		if config.SAVE_AS_JSON == 1:
-			app.save_as_json(web_list, web_list_content_clean, query)
-			log.info('Result is saved as json for'+query)
+			json_file_name = app.save_as_json(web_list, web_list_content_clean, query)
+			log.info('Result is saved as json for'+query+" file="+json_file_name)
+
+		if config.APP_CSF_ACTIVE == 1:
+			if csv_file_name:
+				app.get_csf_manager().upload(csv_file_name)
+			if json_file_name:
+				app.get_csf_manager().upload(json_file_name)
+
 	if config.REMOVE_TMP_DIR==1:
 		app.remove_tmp_folders()
 

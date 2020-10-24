@@ -14,9 +14,9 @@ class FileManager():
 		df = pd.DataFrame({"URLs":web_list, "Content":web_list_content_clean})
 		if not topic:
 			topic ="Dummy"
-
-		df.to_csv(os.getcwd()+"/files/"+topic.replace("+", "_") + "_google.csv")
-		return df
+		file_name=os.getcwd()+"/files/"+topic.replace("+", "_") + "_google.csv"
+		df.to_csv(file_name)
+		return file_name
 
 	class SearchItem:
 		def __init__(self, url, content):
@@ -41,6 +41,8 @@ class FileManager():
 		data = self.SearchResponse(items)
 		file_name=topic.replace("+", "_")
 		file_name=file_name.replace(" ","_")
-		with open(os.getcwd()+"/files/"+file_name + "_google.json", 'w') as outfile:
+		file_name=os.getcwd()+"/files/"+file_name + "_google.json"
+		with open(file_name, 'w') as outfile:
 			json.dump(data, outfile, indent=4, cls=self.SearchResponseEncoder)
 		log.info(" Search Result saved as json --> "+file_name + "_google.json")
+		return file_name
