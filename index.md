@@ -1,6 +1,6 @@
 ## Welcome to wesley-crawler GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/ramazansicakyuz/wesley-crawler/edit/gh-pages/index.md) to crawle the URLS of response of the query.
+You can use the [wesley-crawler](https://github.com/ramazansicakyuz/wesley-crawler/edit/gh-pages/index.md) to help Wesley.
 
 ### Important
 Please use python 3.6 to create virtual environment
