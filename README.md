@@ -11,14 +11,14 @@ You can use the [wesley-crawler](https://github.com/ramazansicakyuz/wesley-crawl
 ### Important
 Please use python 3.x to create virtual environment
 
+### Prepare environment
 To create a virtual environment
   `python3 -m venv venv`
 
 Acivate virtual environment
   `source venv/bin/activate`
 
-### Prepare environment
-to install required libraries
+Install required libraries
   `pip install -r requirements.txt`
 
 ### Configure Application
