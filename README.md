@@ -36,9 +36,9 @@ to configure the application modify config.py You can configure the appliation. 
  and use your account or you can ask to _Ramazan_.
  
  to configure Box.com integration update boxconfig.py and set the following attributes:
- `CLIENT_ID='USE_YOUR_CLIENT_ID'`
- `CLIENT_SECRET='USE_YOUR_OWN_SECRET'`
- `ACCESS_TOKEN='USE_YOUR_TOKEN'`
+ - `CLIENT_ID='USE_YOUR_CLIENT_ID'`
+ - `CLIENT_SECRET='USE_YOUR_OWN_SECRET'`
+ - `ACCESS_TOKEN='USE_YOUR_TOKEN'`
  
 ### RUN the Crawler
 to run the crawler run app.py
