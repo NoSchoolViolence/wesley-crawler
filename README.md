@@ -9,14 +9,14 @@ This repository serves as the centralized location for uploading code (usually J
 You can use the [wesley-crawler](https://github.com/ramazansicakyuz/wesley-crawler/edit/gh-pages/index.md) to make searches with the predefined queries and fetch the all of the URLs and clean text of the content of the websites and PDFs.
 
 ### Important
-Please use python 3.6 to create virtual environment
+Please use python 3.x to create virtual environment
 
 To create a virtual environment
-  `python3.6 -m venv venv`
+  `python3 -m venv venv`
 
 ### Prepare environment
 to install required libraries
-  `pip install -e requirements.txt`
+  `pip install -r requirements.txt`
 
 ### Configure Application
 to configure the application modify config.py You can configure the appliation. For example, you can set:
